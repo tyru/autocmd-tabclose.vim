@@ -31,7 +31,7 @@ augroup tabclose
 
     " the only buffer in the tab is removed.
     autocmd BufWinLeave *
-    \     if get(s:info, 'last_winnr', 0)
+    \     if get(s:info, 'last_winnr', -1) == 1
     \   |   doautocmd User tabclose-post
     \   | endif
 
