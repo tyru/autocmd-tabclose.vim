@@ -16,15 +16,6 @@ set cpo&vim
 " TODO: tabclose-pre
 
 augroup tabclose
-    autocmd BufEnter * echom 'BufEnter'
-    autocmd BufLeave * echom 'BufLeave'
-    autocmd WinEnter * echom 'WinEnter'
-    autocmd WinLeave * echom 'WinLeave'
-    autocmd TabEnter * echom 'TabEnter'
-    autocmd TabLeave * echom 'TabLeave'
-    autocmd BufWinLeave * echom 'BufWinLeave'
-    autocmd BufWinEnter * echom 'BufWinEnter'
-
     let s:info = {}
     autocmd TabLeave *
     \   let s:info = {'last_winnr': winnr('$')}
