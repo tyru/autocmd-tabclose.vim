@@ -23,11 +23,19 @@ augroup tabclose
     autocmd BufWinLeave * echom 'BufWinLeave'
     autocmd BufWinEnter * echom 'BufWinEnter'
 
-    let s:closing_tab = 0
-    autocmd BufWinLeave * if tabpagenr('$') != 1 && winnr('$') == 1 | let s:closing_tab = 1 | endif
-    autocmd TabLeave * if s:closing_tab | doautocmd User tabclose-pre | endif
-    autocmd TabEnter * if s:closing_tab | doautocmd User tabclose-post | endif
-    autocmd BufWinEnter * let s:closing_tab = 0
+    let s:info = {}
+    autocmd TabLeave *
+    \   let s:info = {'last_winnr': winnr('$')}
+
+    " the only buffer in the tab is removed.
+    autocmd BufWinLeave *
+    \     if get(s:info, 'last_winnr', 0)
+    \   |   doautocmd User tabclose-post
+    \   | endif
+
+    " all above events are done. finalizing...
+    autocmd BufWinEnter *
+    \   let s:info = {}
 
     " dummy to not echo "No matching event" message.
     autocmd User tabclose-pre :
