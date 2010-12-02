@@ -18,7 +18,7 @@ set cpo&vim
 augroup tabclose
     let s:info = {}
     autocmd TabLeave *
-    \   let s:info = {'last_winnr': winnr('$')}
+    \   let s:info.last_winnr = winnr('$')
 
     " the only buffer in the tab is removed.
     autocmd BufWinLeave *
