@@ -13,6 +13,8 @@ set cpo&vim
 " }}}
 
 
+" TODO: tabclose-pre
+
 augroup tabclose
     autocmd BufEnter * echom 'BufEnter'
     autocmd BufLeave * echom 'BufLeave'
